@@ -1,0 +1,133 @@
+<html>
+  <head>
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src *  data: blob: 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'; connect-src * 'unsafe-inline'; img-src * data: blob: 'unsafe-inline'; frame-src *; style-src * data: blob: 'unsafe-inline'; font-src * data: blob: 'unsafe-inline';"
+    />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Micre-Frontend Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="importmap-type" content="systemjs-importmap" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <script type="systemjs-importmap">
+      {
+        "imports": {
+          "youtube-app": "http://localhost:8080/main.js",
+          "communication-one-app": "http://localhost:8084/main.js",
+          "communication-two-app": "http://localhost:8085/main.js",
+          "welcome-app": "http://localhost:8082/main.js",
+          "footer-app": "http://localhost:8083/main.js",
+          "header-app": "http://localhost:8081/main.js",
+          "@epam/news-app": "http://localhost:8600/epam-news-app.js",
+          "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.3.0/lib/system/single-spa.min.js",
+          "react": "https://cdn.jsdelivr.net/npm/react@16.13.0/umd/react.production.min.js",
+          "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@16.13.0/umd/react-dom.production.min.js"
+        }
+      }
+    </script>
+    <script src="https://unpkg.com/zone.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/import-map-overrides/dist/import-map-overrides.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.3.1/dist/system.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/extras/amd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/extras/named-exports.min.js"></script>
+  </head>
+
+  <body>
+    <script>
+      System.import("single-spa").then(function (singleSpa) {
+        singleSpa.registerApplication(
+          "header-app",
+          function () {
+            return System.import("header-app");
+          },
+          function (location) {
+            return true;
+          }
+        );
+        singleSpa.registerApplication(
+          "footer-app",
+          function () {
+            return System.import("footer-app");
+          },
+          function (location) {
+            return true;
+          }
+        );
+        singleSpa.registerApplication(
+          "welcome-app",
+          function () {
+            return System.import("welcome-app");
+          },
+          function (location) {
+            return location.pathname === "/";
+          }
+        );
+
+        singleSpa.registerApplication(
+          "youtube-app",
+          function () {
+            return System.import("youtube-app");
+          },
+          function (location) {
+            return location.pathname === "/implementation";
+          }
+        );
+
+        singleSpa.registerApplication(
+          "@epam/news-app",
+          function () {
+            return System.import("@epam/news-app");
+          },
+          function (location) {
+            return location.pathname === "/implementation";
+          }
+        );
+
+        singleSpa.registerApplication(
+          "communication-one-app",
+          function () {
+            return System.import("communication-one-app");
+          },
+          function (location) {
+            return location.pathname === "/communication";
+          }
+        );
+
+        singleSpa.registerApplication(
+          "communication-two-app",
+          function () {
+            return System.import("communication-two-app");
+          },
+          function (location) {
+            return location.pathname === "/communication";
+          }
+        );
+
+        singleSpa.start();
+      });
+    </script>
+    <div id="header"></div>
+    <br />
+    <div id="welcome"></div>
+    <div id="mainDiv" class="d-flex justify-content-around">
+      <div id="React" style="height: 70%; width: 100%;"></div>
+      <div style="width: 5%;"></div>
+      <div id="Angular" style="height: 70%; width: 100%;"></div>
+    </div>
+
+    <div id="mainDiv2" class="d-flex justify-content-around">
+      <div style="width: 2%;"></div>
+      <div id="communication1" style="height: 70%; width: 100%;"></div>
+      <div style="width: 5%;"></div>
+      <div id="communication2" style="height: 70%; width: 100%;"></div>
+    </div>
+
+    <div id="footer"></div>
+    <!-- <import-map-overrides-full></import-map-overrides-full> -->
+  </body>
+</html>

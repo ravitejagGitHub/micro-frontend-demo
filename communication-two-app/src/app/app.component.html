@@ -1,0 +1,31 @@
+<h4 class="highlight">Channel Two</h4>
+<br />
+<div class="chat">
+  <ul class="list-group" *ngIf="msgs.length > 0">
+    <li
+      class="list-group-item shadow-sm bg-white rounded"
+      *ngFor="let msg of msgs"
+    >
+      <h6 class="list-group-item-heading">
+        {{ msg }}
+        <small class="text-muted" style="float: right;">{{
+          now | date: "HH:mm:ss"
+        }}</small>
+      </h6>
+    </li>
+  </ul>
+  <h6 *ngIf="msgs.length <= 0" class="highlight">
+    Recevied messages will be displayed here !
+  </h6>
+</div>
+<br />
+<textarea
+  class="form-control z-depth-1"
+  [(ngModel)]="msg"
+  rows="3"
+  placeholder="Write something to send to channel one...."
+></textarea>
+<br />
+<button class="btn btn-success" (click)="sendMsg()" style="float: right;">
+  send to channel one
+</button>

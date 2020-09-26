@@ -1,0 +1,12 @@
+.highlight {
+  color: rgb(3, 0, 0);
+  padding: 10px;
+  padding-bottom: 0px;
+  text-shadow: 2px 2px 4px hsla(0, 100%, 100%, 0.973);
+}
+.chat {
+  height: 450px;
+  border: 2px solid rgb(35, 31, 32);
+  overflow-y: scroll;
+  background-color: rgba(73, 75, 77, 0.075);
+}

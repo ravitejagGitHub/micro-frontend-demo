@@ -1,0 +1,48 @@
+<div class="flex-container nav-color">
+  <!-- <img src="../assets/logo2.png" alt="INF" id="logo"/>  -->
+  <h2 class="highlight">YOUTUBE APP</h2>
+  <form id="search-tab">
+    <input
+      id="search-data"
+      [(ngModel)]="searchData"
+      type="text"
+      placeholder="Search.."
+      name="search"
+    />
+    <button id="search-button" (click)="fetchData()">
+      <i class="fa fa-search"></i>
+    </button>
+  </form>
+</div>
+<div id="main">
+  <div class="item" *ngFor="let element of items">
+    <a
+      href="https://www.youtube.com/watch?v={{ element.id.videoId }}"
+      target="_blank"
+    >
+      <img
+        src="{{ element.snippet.thumbnails.default.url }}"
+        alt="video icon"
+        class="thumb"
+      />
+    </a>
+    <div class="details">
+      <h6>
+        <a
+          href="https://www.youtube.com/watch?v={{ element.id.videoId }}"
+          target="_blank"
+          >{{ element.snippet.title }}</a
+        >
+      </h6>
+      <p>
+        Published on {{ element.snippet.publishedAt.substring(0, 10) }} by
+        {{ element.snippet.channelTitle }}
+      </p>
+      <p></p>
+      <p>{{ element.snippet.description.substring(0, 100) }}</p>
+    </div>
+  </div>
+</div>
+<footer class="footer-flex nav-color">
+  <div>@ 2020 Copyright: EPAM - UI Community</div>
+</footer>
